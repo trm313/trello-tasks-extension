@@ -1,0 +1,27 @@
+{
+  "name": "trello-tasks-extension",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "async": "^2.6.2",
+    "axios": "^0.18.0",
+    "date-fns": "^1.30.1",
+    "jquery": "^3.3.1",
+    "prop-types": "^15.7.2",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-load-script": "0.0.6",
+    "react-scripts": "1.1.4",
+    "styled-components": "^4.1.3"
+  },
+  "scripts": {
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build && node build-script.js",
+    "test": "react-app-rewired test --env=jsdom",
+    "eject": "react-app-rewired eject"
+  },
+  "devDependencies": {
+    "react-app-rewired": "^1.5.2",
+    "write-file-webpack-plugin": "^4.3.2"
+  }
+}

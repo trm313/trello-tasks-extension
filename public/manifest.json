@@ -1,0 +1,16 @@
+{
+  "name": "my-demo-extension",
+  "version": "0.1.0",
+  "background": {
+    "persistent": false,
+    "scripts": ["background.js"]
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://trello.com/*/home"],
+      "js": ["background.js"]
+    }
+  ],
+  "permissions": ["tabs", "https://trello.com/*/home"],
+  "manifest_version": 2
+}
