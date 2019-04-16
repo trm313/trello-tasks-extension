@@ -65,6 +65,7 @@ class MyTasks extends Component {
       }
       return aDate - bDate;
     });
+
     return (
       <div>
         <TaskList>{this.renderTasks(myTasks)}</TaskList>

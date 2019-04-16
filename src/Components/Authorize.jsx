@@ -16,7 +16,7 @@ export default class Authorize extends Component {
 
   authenticationSuccess = () => {
     let token = localStorage.getItem("trello_token");
-    let id = localStorage.getItem("idMe");
+    let id = JSON.parse(localStorage.getItem("idMe"));
     window.Trello.setToken(token);
     this.props.authorizeUser(id, token);
   };
