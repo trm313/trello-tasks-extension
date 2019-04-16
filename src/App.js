@@ -6,6 +6,7 @@ import Header from "./Components/Header";
 import Authorize from "./Components/Authorize";
 import MyTasks from "./Components/MyTasks";
 import Loader from "./Components/UI/Loader";
+import Error from "./Components/UI/Error";
 
 class App extends Component {
   constructor(props) {
@@ -15,20 +16,31 @@ class App extends Component {
       id: null,
       boards: null,
       cards: null,
-      members: null
+      members: null,
+      error: null
     };
   }
 
   fetchData = async () => {
     let path = window.location.pathname.split("/");
-    fetchOrganization(this.state.token, path[1], this.setData);
+    fetchOrganization(
+      this.state.token,
+      path[1],
+      this.setData,
+      this.setErrorStatus
+    );
   };
 
   fetchMembers = async () => {
     let path = window.location.pathname.split("/");
-    fetchMembers(this.state.token, path[1], data => {
-      this.setState({ members: data });
-    });
+    fetchMembers(
+      this.state.token,
+      path[1],
+      data => {
+        this.setState({ members: data });
+      },
+      this.setErrorStatus
+    );
   };
 
   setData = boards => {
@@ -43,13 +55,23 @@ class App extends Component {
     });
   };
 
+  setErrorStatus = message => {
+    this.setState({
+      error: message
+    });
+  };
+
   render() {
     if (!this.state.id || !this.state.token) {
       return (
         <div className="boards-page-board-section mod-no-sidebar">
           <Header />
           <div>
-            <Authorize authorizeUser={this.handleAuthorizeUser} />
+            {this.state.error && <Error message={this.state.error} />}
+            <Authorize
+              authorizeUser={this.handleAuthorizeUser}
+              errorCallback={this.setErrorStatus}
+            />
           </div>
         </div>
       );
@@ -60,6 +82,7 @@ class App extends Component {
         <div className="boards-page-board-section mod-no-sidebar">
           <Header />
           <div>
+            {this.state.error && <Error message={this.state.error} />}
             <Loader />
           </div>
         </div>
@@ -69,11 +92,13 @@ class App extends Component {
     return (
       <div className="boards-page-board-section mod-no-sidebar">
         <Header />
+        {this.state.error && <Error message={this.state.error} />}
         <MyTasks
           token={this.state.token}
           id={this.state.id}
           cards={this.state.cards}
           members={this.state.members}
+          errorCallback={this.setErrorStatus}
         />
       </div>
     );

@@ -99,6 +99,7 @@ const Task = props => {
           {card.labels.map(label => {
             return (
               <span
+                key={`card-${card.id}-label-${label.color}`}
                 className={`card-label card-label-${
                   label.color
                 } mod-card-front`}
@@ -147,9 +148,17 @@ const Task = props => {
           <RowSegment>
             {card.memberInfo.map((member, index) => {
               if (index < 2) {
-                return <Member>{member.initials}</Member>;
+                return (
+                  <Member key={`card-${card.id}-member-${member.id}`}>
+                    {member.initials}
+                  </Member>
+                );
               } else if (index == 3) {
-                return <Member>+{card.memberInfo.length - 2}</Member>;
+                return (
+                  <Member key={`card-${card.id}-member-more`}>
+                    +{card.memberInfo.length - 2}
+                  </Member>
+                );
               } else {
                 return;
               }

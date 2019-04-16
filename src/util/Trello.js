@@ -4,7 +4,7 @@ import mapSeries from "async/mapSeries";
 const BASE = "https://api.trello.com/1";
 const KEY = "0549bc895eb4558439ae68fda12ace06";
 
-export function fetchMembers(token, name, callback) {
+export function fetchMembers(token, name, callback, errorCallback) {
   // https://api.trello.com/1/organizations/id/members/filter
   let params = `filter=all&fields=all&key=${KEY}&token=${token}`;
   let url = `${BASE}/organizations/${name}/members?${params}`;
@@ -15,10 +15,16 @@ export function fetchMembers(token, name, callback) {
     })
     .catch(error => {
       console.error("fetchMembers", error);
+      errorCallback("Error fetching team members");
     });
 }
 
-export async function fetchOrganization(token, name, returnDataCallback) {
+export async function fetchOrganization(
+  token,
+  name,
+  returnDataCallback,
+  errorCallback
+) {
   let params = `filter=all&fields=all&key=${KEY}&token=${token}`;
   let url = `${BASE}/organizations/${name}/boards?${params}`;
   axios
@@ -53,6 +59,7 @@ export async function fetchOrganization(token, name, returnDataCallback) {
     })
     .catch(error => {
       console.error(error);
+      errorCallback("Error retrieving team data");
     });
 }
 

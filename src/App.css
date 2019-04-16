@@ -2,8 +2,6 @@
   text-align: center;
 }
 
-/* SPINNER */
-/* markup: <div class="lds-facebook"><div></div><div></div><div></div></div> */
 .lds-facebook {
   display: inline-block;
   position: relative;

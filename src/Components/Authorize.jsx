@@ -23,6 +23,7 @@ export default class Authorize extends Component {
 
   authenticationFailure = () => {
     console.error("Authentication to Trello failed");
+    this.props.errorCallback("Authentication to Trello failed");
   };
 
   authorizeUser = () => {

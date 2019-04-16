@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
+// import "./index.css";
 import App from "./App";
 import registerServiceWorker from "./registerServiceWorker";
 
@@ -14,8 +14,15 @@ if (onPage) {
 const anchor = document.createElement("div");
 anchor.id = EXT_ROOT;
 
-var parent = document.getElementsByClassName("content-all-boards")[0];
-parent.prepend(anchor);
+// console.log("Searching for root content-all-boards");
+// console.log(document.getElementsByClassName("content-all-boards"));
+let parent = document.getElementsByClassName("content-all-boards")[0];
+if (parent) {
+  // console.log("Root found", parent);
+  parent.prepend(anchor);
 
-ReactDOM.render(<App />, document.getElementById(EXT_ROOT));
-registerServiceWorker();
+  ReactDOM.render(<App />, document.getElementById(EXT_ROOT));
+  registerServiceWorker();
+} else {
+  // console.log("Root not found", parent);
+}
