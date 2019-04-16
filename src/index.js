@@ -14,11 +14,8 @@ if (onPage) {
 const anchor = document.createElement("div");
 anchor.id = EXT_ROOT;
 
-var elements = document.getElementsByClassName("content-all-boards");
-// TODO: Fix bug for intermittend injection failure
-// console.log("index.js>elements (content-all-boards selector)", elements);
-var uploaderDiv = elements[0];
-elements[0].insertBefore(anchor, uploaderDiv.children[0]);
+var parent = document.getElementsByClassName("content-all-boards")[0];
+parent.prepend(anchor);
 
 ReactDOM.render(<App />, document.getElementById(EXT_ROOT));
 registerServiceWorker();

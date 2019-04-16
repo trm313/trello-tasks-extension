@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Trello from "../lib/Trello";
 
 export default class Authorize extends Component {
   constructor(props) {
