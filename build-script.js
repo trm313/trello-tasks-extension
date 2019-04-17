@@ -6,7 +6,7 @@ const updateBackgroundFile = buildPath => {
   const assetContents = JSON.parse(fs.readFileSync(assetManifest, "utf8"));
 
   const jsPlaceholder = 'const jsLocation = "./static/js/bundle.js";';
-  const cssPlaceholder = "const cssLocation = null;";
+  const cssPlaceholder = "const cssLocation = './static/css/main.css';";
 
   const jsLocation = `const jsLocation = "./${assetContents["main.js"]}";`;
   const cssLocation = `const cssLocation = "./${assetContents["main.css"]}";`;
