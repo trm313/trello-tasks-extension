@@ -2,7 +2,6 @@
   "name": "Taskllo - Tasks for Trello",
   "short_name": "Taskllo",
   "version": "1.3.0",
-  "default_locale": "en",
   "description": "To Do list for your Trello tasks across all of your team boards",
   "icons": {
     "16": "icon_16.png",
